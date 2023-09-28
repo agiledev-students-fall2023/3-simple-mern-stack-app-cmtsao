@@ -22,6 +22,25 @@ mongoose
 const { Message } = require('./models/Message')
 const { User } = require('./models/User')
 
+
+//a route to handle fetching About Us
+app.get('/aboutus', async (req, res) => {
+  try {
+    res.json({
+      heading: "Hello, my name is Carol!",
+      bio: ["I am a senior studying Business and Math & Computer Science, hoping to find a job in software devlopment.", "I am from Nanuet, NY, just outside the city.", "I enjoy skiing in the winter. I enjoy dancing and reading. I also play video games on occasion.", "I really like traveling and trying new foods, so I hope I can do more of that in the near future.", "I also love sweets and bakeries, especially more uncommon desserts."],
+      image: "https://cdn.discordapp.com/attachments/810759406068564011/1016217456102080532/IMG_8967.JPG?ex=6515b701&is=65146581&hm=6d2f4eb0a8be568eac595ccc7d37a32d2729d20808a5c6161bb73bba3b98432c&",
+      status: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve information',
+    })
+  }
+})
+
 // a route to handle fetching all messages
 app.get('/messages', async (req, res) => {
   // load all messages from database
